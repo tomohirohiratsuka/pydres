@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "simple_dependency_resolver"
+version = "0.1.0"
+description = "A simple dependency resolver"
+authors = ["TomohiroHiratsuka"]
+readme = "README.md"
+packages = [
+    { include = "simple_dependency_resolver", from = "." }
+]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

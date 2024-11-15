@@ -1,0 +1,10 @@
+[run]
+data_file = ./tests/coverages/.coverage
+omit =
+    */__init__.py
+
+[html]
+directory = ./tests/coverages/htmlcov
+
+[xml]
+output = ./tests/coverages/coverage.xml
