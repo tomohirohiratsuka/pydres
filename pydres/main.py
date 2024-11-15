@@ -3,8 +3,8 @@ import inspect
 from inspect import Parameter
 from typing import Any, Type, Dict, Union, Optional, Callable, TypeVar
 
-from simple_dependency_resolver.const import BUILTIN_TYPES, SPECIAL_TYPES
-from simple_dependency_resolver.regexp import special_type_pattern
+from pydres.const import BUILTIN_TYPES, SPECIAL_TYPES
+from pydres.regexp import special_type_pattern
 
 T = TypeVar("T", bound=Any)
 DependencyResolverOverrides = Dict[Union[Type, str], Any]

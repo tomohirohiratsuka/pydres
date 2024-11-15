@@ -1,4 +1,4 @@
-# simple_dependency_resolver/__init__.py
+# pydres/__init__.py
 
 from .const import BUILTIN_TYPES, SPECIAL_TYPES
 from .regexp import special_type_pattern

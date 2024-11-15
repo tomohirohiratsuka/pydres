@@ -5,7 +5,7 @@ from unittest.mock import patch
 import pytest
 from datetime import datetime
 
-from simple_dependency_resolver.main import get_first_custom_init, is_custom_class_string_annotation, \
+from pydres.main import get_first_custom_init, is_custom_class_string_annotation, \
 	resolve_dependency_from_overrides, find_class_in_module, is_builtin_type, is_custom_class, resolve_dependency, \
 	instantiate_with_dependencies
 
@@ -542,7 +542,7 @@ class TestInstantiateWithDependencies:
 			assert result is None
 
 		def test_should_return_override_value_when_resolve_dependency_from_overrides_return_value(self):
-			with patch('simple_dependency_resolver.main.resolve_dependency_from_overrides') as mock_resolve:
+			with patch('pydres.main.resolve_dependency_from_overrides') as mock_resolve:
 				# Given
 				mock_resolve.return_value = 'override'
 				params = inspect.signature(B.__init__).parameters
@@ -555,10 +555,10 @@ class TestInstantiateWithDependencies:
 				assert result == 'override'
 
 		def test_should_call_find_class_in_module_when_is_custom_class_string_annotation_return_true(self):
-			with patch('simple_dependency_resolver.main.resolve_dependency_from_overrides') as mock_resolve:
+			with patch('pydres.main.resolve_dependency_from_overrides') as mock_resolve:
 				# Given
 				mock_resolve.return_value = None
-				with patch('simple_dependency_resolver.main.find_class_in_module') as mock_find:
+				with patch('pydres.main.find_class_in_module') as mock_find:
 					# Given
 					params = inspect.signature(AWithStringAnnotation.__init__).parameters
 					name, param = list(params.items())[1]
@@ -570,14 +570,14 @@ class TestInstantiateWithDependencies:
 					mock_find.assert_called_once_with(AWithStringAnnotation, 'B')
 
 		def test_should_call_instantiate_with_dependencies_when_is_custom_class_return_true(self):
-			with patch('simple_dependency_resolver.main.resolve_dependency_from_overrides') as mock_resolve:
+			with patch('pydres.main.resolve_dependency_from_overrides') as mock_resolve:
 				# Given
 				mock_resolve.return_value = None
 				with patch(
-						'simple_dependency_resolver.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
+						'pydres.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
 					mock_is_custom_string_class.return_value = False
 					with patch(
-							'simple_dependency_resolver.main.instantiate_with_dependencies') as mock_instantiate:
+							'pydres.main.instantiate_with_dependencies') as mock_instantiate:
 						# Given
 						params = inspect.signature(AWithDirectTypeAnnotation.__init__).parameters
 						name, param = list(params.items())[1]
@@ -589,14 +589,14 @@ class TestInstantiateWithDependencies:
 						mock_instantiate.assert_called_once_with(B, {})
 
 		def test_should_return_default_value_when_param_default_is_not_param_empty(self):
-			with patch('simple_dependency_resolver.main.resolve_dependency_from_overrides') as mock_resolve:
+			with patch('pydres.main.resolve_dependency_from_overrides') as mock_resolve:
 				# Given
 				mock_resolve.return_value = None
 				with patch(
-						'simple_dependency_resolver.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
+						'pydres.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
 					mock_is_custom_string_class.return_value = False
 					with patch(
-							'simple_dependency_resolver.main.is_custom_class') as mock_is_custom_class:
+							'pydres.main.is_custom_class') as mock_is_custom_class:
 						mock_is_custom_class.return_value = False
 						params = inspect.signature(B.__init__).parameters
 						name, param = list(params.items())[2]
@@ -608,14 +608,14 @@ class TestInstantiateWithDependencies:
 						assert result == 'default message'
 
 		def test_should_return_none_when_default_value_is_not_set(self):
-			with patch('simple_dependency_resolver.main.resolve_dependency_from_overrides') as mock_resolve:
+			with patch('pydres.main.resolve_dependency_from_overrides') as mock_resolve:
 				# Given
 				mock_resolve.return_value = None
 				with patch(
-						'simple_dependency_resolver.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
+						'pydres.main.is_custom_class_string_annotation') as mock_is_custom_string_class:
 					mock_is_custom_string_class.return_value = False
 					with patch(
-							'simple_dependency_resolver.main.is_custom_class') as mock_is_custom_class:
+							'pydres.main.is_custom_class') as mock_is_custom_class:
 						mock_is_custom_class.return_value = False
 						params = inspect.signature(B.__init__).parameters
 						name, param = list(params.items())[0]

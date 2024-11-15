@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "simple_dependency_resolver"
+name = "pydres"
 version = "0.1.0"
 description = "A simple dependency resolver"
 authors = ["TomohiroHiratsuka"]
 readme = "README.md"
 packages = [
-    { include = "simple_dependency_resolver", from = "." }
+    { include = "pydres", from = "." }
 ]
 license = "MIT"
 
